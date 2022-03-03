@@ -18,18 +18,7 @@ const Node = (operator, value, left, right) => {
 
   
   const toString = function () {
-    switch (this.operator) {
-      case "+":
-        return `(${left.toString()} + ${right.toString()})`;
-      case "-":
-        return `(${left.toString()} - ${right.toString()})`;
-      case "x":
-        return `(${left.toString()} x ${right.toString()})`;
-      case "÷":
-        return `(${left.toString()} ÷ ${right.toString()})`;
-      default:
-        return value.toString();
-    }
+    return this.operator ? `(${left.toString()} ${this.operator} ${right.toString()})` : value.toString();
   };
 
   return {
