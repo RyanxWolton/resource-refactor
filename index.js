@@ -2,19 +2,14 @@ const assert = require("assert")
 
 const Math = {
   OperatorNode: (operator, left, right) => ({
+    operations: {
+      "+": (left, right) => left + right,
+      "-": (left, right) => left - right,
+      "x": (left, right) => left * right,
+      "÷": (left, right) => left / right
+     },
     result() {
-      const leftResult = left.result()
-      const rightResult = right.result()
-      switch (operator) {
-        case "+":
-          return leftResult + rightResult;
-        case "-":
-          return leftResult - rightResult;
-        case "x":
-          return leftResult * rightResult;
-        case "÷":
-          return leftResult / rightResult;
-      }
+      return this.operations[operator](left.result(), right.result())
     },
     toString() { 
       return `(${left.toString()} ${operator} ${right.toString()})` 
