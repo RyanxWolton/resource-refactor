@@ -1,7 +1,7 @@
 const assert = require("assert")
 
 const Math = {
-  OperatorNode: (operator, left, right) => ({
+  OperatorNode: (operator, left, right) => Object.create({
     operations: {
       "+": (left, right) => left + right,
       "-": (left, right) => left - right,
@@ -15,7 +15,7 @@ const Math = {
       return `(${left.toString()} ${operator} ${right.toString()})` 
     }
   }),
-  ValueNode: (value) => ({
+  ValueNode: (value) => Object.create({
     result() { return value },
     toString() { return value.toString() }
   })
