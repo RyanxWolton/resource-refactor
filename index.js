@@ -3,15 +3,17 @@ const assert = require("assert")
 const Math = {
   OperatorNode: (operator, left, right) => ({
     result() {
+      const leftResult = left.result()
+      const rightResult = right.result()
       switch (operator) {
         case "+":
-          return left.result() + right.result();
+          return leftResult + rightResult;
         case "-":
-          return left.result() - right.result();
+          return leftResult - rightResult;
         case "x":
-          return left.result() * right.result();
+          return leftResult * rightResult;
         case "÷":
-          return left.result() / right.result();
+          return leftResult / rightResult;
       }
     },
     toString() { 
@@ -31,8 +33,8 @@ const Six = Math.ValueNode(6)
 const Seven = Math.ValueNode(7)
 const SubtractNode = Math.OperatorNode("-", Three, Two)
 const MultiplyNode = Math.OperatorNode("x", SubtractNode, Five)
-const AddNode = Math.OperatorNode("+", Seven, MultiplyNode)
-const tree = Math.OperatorNode("÷", AddNode, Six)
+const SumNode = Math.OperatorNode("+", Seven, MultiplyNode)
+const tree = Math.OperatorNode("÷", SumNode, Six)
 
 assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
 assert.strictEqual(2, tree.result());
